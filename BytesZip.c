@@ -83,26 +83,26 @@ int gzdecompress(Byte *zdata, uLong nzdata,
 
 int main()
 {
-	unsigned char strSrc[2400] = {0};
+    unsigned char strSrc[2400] = {0};
     for (int i=0; i<100; ++i)
     {
         strcat(strSrc, "00000000111222233334455");
     }
-    
-	unsigned char buf[2400] = {0};
-	unsigned char strDst[2400] = {0};
-	unsigned long srcLen = strlen(strSrc);
-	unsigned long bufLen = sizeof(buf);
-	unsigned long dstLen = sizeof(strDst);
-	printf("Src string:%s\nLength:%ld\n", strSrc, srcLen);
 
-	// Compress
+    unsigned char buf[2400] = {0};
+    unsigned char strDst[2400] = {0};
+    unsigned long srcLen = strlen(strSrc);
+    unsigned long bufLen = sizeof(buf);
+    unsigned long dstLen = sizeof(strDst);
+    printf("Src string:%s\nLength:%ld\n", strSrc, srcLen);
+
+    // Compress
     gzcompress(strSrc, srcLen, buf, &bufLen);
-	printf("After Compressed Length:%ld\n", bufLen);
-    
-	// Decompress
+    printf("After Compressed Length:%ld\n", bufLen);
+
+    // Decompress
     gzdecompress(buf, bufLen, strDst, &dstLen);
-	printf("After UnCompressed Length:%ld\n",dstLen);
-	printf("UnCompressed String:%s\n",strDst);
-	return 0;
+    printf("After UnCompressed Length:%ld\n",dstLen);
+    printf("UnCompressed String:%s\n",strDst);
+    return 0;
 }
